@@ -1,17 +1,17 @@
 package ru.netology.stats;
 
 public class Radio {
-    private int amountStation = 10;
-    private int currentStation = getCurrentStation();
+    private int amountStation = 20;
+    private int currentStation = amountStation;
     private int currentVolume;
 
     public Radio(int amountStation) {
         this.amountStation = amountStation;
+        this.currentStation = amountStation;
     }
 
     public Radio() {
-        amountStation = getAmountStation();
-
+        currentStation = amountStation;
     }
 
     public int getAmountStation() {
@@ -23,12 +23,34 @@ public class Radio {
     }
 
     public void setCurrentStation(int newCurrentStation) {
-        if (newCurrentStation == amountStation) {
-            newCurrentStation = 0;
-        } else if (newCurrentStation == 0) {
+        if (newCurrentStation >= amountStation) {
             newCurrentStation = amountStation;
+
+        }
+        if (newCurrentStation < amountStation) {
+            newCurrentStation = newCurrentStation;
         }
         currentStation = newCurrentStation;
+    }
+
+    public void prevStation() {
+        if (currentStation < amountStation) {
+            currentStation = currentStation - 1;
+        } else {
+            currentStation = amountStation - 1;
+        }
+        if (currentStation <= 0) {
+            currentStation = amountStation - 1;
+        }
+    }
+
+    public void nextStation() {
+        if (currentStation < amountStation) {
+            currentStation++;
+        }
+        if (currentStation == amountStation) {
+            currentStation = 0;
+        }
     }
 
     public int getCurrentVolume() {
@@ -55,22 +77,4 @@ public class Radio {
             currentVolume = currentVolume - 1;
         }
     }
-
-    public void prevStation() {
-        if (currentStation <= amountStation) {
-            currentStation = currentStation - 1;
-        }else {
-            amountStation = amountStation -1;
-        }
-        if (currentStation < 0) {
-            currentStation = amountStation - 1;
-        }
-    }
-        public void nextStation () {
-            if (currentStation == amountStation - 1) {
-                currentStation = 0;
-            } else {
-                currentStation = currentStation + 1;
-            }
-        }
-    }
+}
