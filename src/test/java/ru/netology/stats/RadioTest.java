@@ -40,9 +40,23 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    public void prevStation1() {
+        Radio stat = new Radio();
+
+        stat.setCurrentStation(0);
+        stat.prevStation();
+
+        int expected = 20;
+        int actual = stat.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
     @Test
     public void prevStation() {
-        Radio stat = new Radio(3);
+        Radio stat = new Radio(7);
 
         stat.setCurrentStation(3);
         stat.prevStation();
