@@ -1,21 +1,16 @@
 package ru.netology.stats;
 
 public class Radio {
-    private int amountStation = 20;
-    private int currentStation = amountStation;
+    private int currentStation;
     private int currentVolume;
-
-    public Radio(int amountStation) {
-        this.amountStation = amountStation;
-        this.currentStation = amountStation;
-    }
+    private int maxStation;
 
     public Radio() {
-        currentStation = amountStation;
+        this.maxStation = 20;
     }
 
-    public int getAmountStation() {
-        return amountStation;
+    public Radio(int amountStations) {
+        this.maxStation = amountStations - 1;
     }
 
     public int getCurrentStation() {
@@ -23,34 +18,13 @@ public class Radio {
     }
 
     public void setCurrentStation(int newCurrentStation) {
-        if (newCurrentStation >= amountStation) {
-            newCurrentStation = amountStation;
-
+        if (newCurrentStation > maxStation) {
+            newCurrentStation = 0;
         }
-        if (newCurrentStation < amountStation) {
-            newCurrentStation = newCurrentStation;
+        if (newCurrentStation < 0) {
+            newCurrentStation = 9;
         }
         currentStation = newCurrentStation;
-    }
-
-    public void prevStation() {
-        if (currentStation < amountStation) {
-            currentStation = currentStation - 1;
-        } else {
-            currentStation = amountStation - 1;
-        }
-        if (currentStation <= 0) {
-            currentStation = amountStation - 1;
-        }
-    }
-
-    public void nextStation() {
-        if (currentStation < amountStation) {
-            currentStation++;
-        }
-        if (currentStation == amountStation) {
-            currentStation = 0;
-        }
     }
 
     public int getCurrentVolume() {
@@ -75,6 +49,22 @@ public class Radio {
     public void downVolume() {
         if (currentVolume > 0) {
             currentVolume = currentVolume - 1;
+        }
+    }
+
+    public void prevStation() {
+        if (currentStation == 0) {
+            currentStation = maxStation;
+        } else {
+            currentStation = currentStation - 1;
+        }
+    }
+
+    public void nextStation() {
+        if (currentStation == maxStation) {
+            currentStation = 0;
+        } else {
+            currentStation = currentStation + 1;
         }
     }
 }
